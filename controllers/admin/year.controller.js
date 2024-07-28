@@ -8,7 +8,7 @@ exports.createYearGet = {
       const yearData = await db.years.findAll({
         where: {
           course_id: req.params.id,
-        },
+        },order : ['value']
       });
       res.render("../views/admin/year.ejs", { yearData, courseData });
     } catch (error) {

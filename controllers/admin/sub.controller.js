@@ -9,7 +9,7 @@ exports.createSubjectGet = {
       const subData = await db.subjects.findAll({
         where: {
           sem_id: req.params.id,
-        },
+        }, order : ['name']
       });
       const semData = await db.sems.findAll({});
       res.render("../views/admin/sub.ejs", { subData, semData });

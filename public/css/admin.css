@@ -141,3 +141,9 @@ label ,select
 { 
         font-size: 1.5vh !important ;
 }
+
+
+.disable{
+    pointer-events:none;
+    background:grey;
+    }

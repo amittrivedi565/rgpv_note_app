@@ -1,123 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
 <%- include('includes/head.ejs') %>
-<html>
-<body>
-    
-    <div class="main">
-      <%- include('partials/sidebar') %>
 
-        <div class="main-right">
-            <%- include('partials/nav') %>
-            <div class="main-right-bread">
-                <b>Year Page</b>
-            
-                <div class="addModal">
-                    <!-- Button trigger modal -->
-                    <form method="post">
-                    <button type="button" class="btn btn-primary btn-sm " data-bs-toggle="modal" data-bs-target="#exampleModal">+</button>
-                    <!-- Modal -->
-                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h1 class="modal-title fs-5" id="exampleModalLabel">Create Year </h1>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                </div>
-                                <div class="modal-body">
-            
+    <body>
+        <div class="main">
+            <%- include('partials/sidebar') %>
 
-                                        <div class="form-group">
-                                            <label for="year_name" class="col-form-label">
-                                                Year Value :</label>
-                                                <select  name="name" id="a" class="user-select"> 
-                                                    <option value="" selected data-id="0">Select</option>
-                                                    <option value="First Year" data-id="1">First Year</option>
-                                                    <option value="Second Year" data-id="2">Second Year</option>
-                                                    <option value="Third Year" data-id="3">Third Year</option>
-                                                    <option value="Fourth Year" data-id="4">Fourth Year</option>
-                                                  </select>
+                <div class="main-right">
+                    <%- include('partials/nav') %>
+                        <div class="main-right-top">
+                            <b>Year Page</b>
 
-                                                  <select name="value" id="b" class="auto-select" > 
-                                                    <option value=""selected ></option>
-                                                    <option name="year_value" value="1">1</option>
-                                                    <option name="year_value" value="2">2</option>
-                                                   <option  name="year_value" value="3">3</option>
-                                                    <option name="year_value" value="4">4</option>
-                                                  </select>
-                                                  
+                            <div class="addModal">
+                                <!-- Button trigger modal -->
+                                <form method="post">
+                                    <button type="button" class="btn btn-primary btn-sm " data-bs-toggle="modal"
+                                        data-bs-target="#exampleModal">+</button>
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="exampleModal" tabindex="-1"
+                                        aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h1 class="modal-title fs-5" id="exampleModalLabel">Create Year
+                                                    </h1>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                        aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+
+
+                                                    <div class="form-group">
+                                                        <label for="year_name" class="col-form-label">
+                                                            Year Value :</label>
+                                                        <select name="name" id="a" class="user-select">
+                                                            <option value="" selected data-id="0">Select</option>
+                                                            <option value="First Year" data-id="1">First Year</option>
+                                                            <option value="Second Year" data-id="2">Second Year</option>
+                                                            <option value="Third Year" data-id="3">Third Year</option>
+                                                            <option value="Fourth Year" data-id="4">Fourth Year</option>
+                                                        </select>
+
+                                                        <select name="value" id="b" class="auto-select">
+                                                            <option value="" selected></option>
+                                                            <option name="year_value" value="1">1</option>
+                                                            <option name="year_value" value="2">2</option>
+                                                            <option name="year_value" value="3">3</option>
+                                                            <option name="year_value" value="4">4</option>
+                                                        </select>
+
+                                                    </div>
+
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary"
+                                                        data-bs-dismiss="modal">Close</button>
+                                                    <button type="submit" class="btn btn-primary">Save changes</button>
+                                                </div>
+                                            </div>
                                         </div>
-    
                                     </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                        <button type="submit" class="btn btn-primary">Save changes</button>
-                                    </div>
-                                </div>
                             </div>
+                            </form>
                         </div>
-                    </div>
-                </form>
-                </div>
-            <div class="main-right-bottom">
-                <% if (yearData.length>0) { %>
-                <% var index=0; %>
-                <% for( let yearArray of yearData ) { %>
-                <% index++ %>
-                <div class="accordion mb-5 " id="accordionFlushExample">
-                    <div class="accordion-item">
-                        <h2 class="accordion-header" id="flush-headingOne">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                            data-bs-target="#flush-<%=index%>" aria-expanded="false"
-                            aria-controls="flush-collapseOne">
-                        # <%= yearArray.name %>
-                        </button>
-                        <div id="flush-<%=index%>" class="accordion-collapse collapse"
-                            aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
-                            <div class="accordion-body">
-                                <table class="table table-sm table-hover">
-                                    <thead >
-                                        <tr>
-                                            <th scope="col">Course</th>
-                                            <th scope="col">Year</th>
-                                            <th scope="col">*Semesters</th>
-                                        
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>
-                                                <%= yearArray.course_name %>
-                                            </td>
-                                            <td>
-                                                <%= yearArray.name %>
-                                            </td>
-    
-                                            <td><a href="/close/sem/<%= yearArray.name %>/<%= yearArray.id %>"><button
-                                                type="button" class="btn btn-outline-primary btn-sm">Next</button></a></td>
-                            
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
+                        <div class="main-right-bottom">
+                            <% if (yearData.length>0) { %>
+                                <% var index=0; %>
+                                    <% for( let yearArray of yearData ) { %>
+                                        <% index++ %>
+                                            <div class="accordion mb-5 " id="accordionFlushExample">
+                                                <div class="accordion-item">
+                                                    <h2 class="accordion-header" id="flush-headingOne">
+                                                        <button class="accordion-button collapsed" type="button"
+                                                            data-bs-toggle="collapse" data-bs-target="#flush-<%=index%>"
+                                                            aria-expanded="false" aria-controls="flush-collapseOne">
+                                                            # <%= yearArray.name %>
+                                                        </button>
+                                                        <div id="flush-<%=index%>" class="accordion-collapse collapse"
+                                                            aria-labelledby="flush-headingOne"
+                                                            data-bs-parent="#accordionFlushExample">
+                                                            <div class="accordion-body">
+                                                                <table class="table table-sm table-hover">
+                                                                    <thead>
+                                                                        <tr>
+                                                                            <th scope="col">Course</th>
+                                                                            <th scope="col">Year</th>
+                                                                            <th scope="col">*Semesters</th>
+
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody>
+                                                                        <tr>
+                                                                            <td>
+                                                                                <%= yearArray.course_name %>
+                                                                            </td>
+                                                                            <td>
+                                                                                <%= yearArray.name %>
+                                                                            </td>
+
+                                                                            <td><a
+                                                                                    href="/close/sem/<%= yearArray.name %>/<%= yearArray.id %>"><button
+                                                                                        type="button"
+                                                                                        class="btn btn-outline-primary btn-sm">Next</button></a>
+                                                                            </td>
+
+                                                                            </td>
+                                                                        </tr>
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+                                                        </div>
+                                                </div>
+                                                <% } %>
+                                            </div>
+                                            <% } %>
                         </div>
-                    </div>
-                    <% } %>
-                </div>
-                <% } %>
-            </div>
     </body>
+
 </html>
 </div>
 
 <script>
-    window.onload=function() { 
-  document.getElementById("a").onchange=function() {
-    document.getElementById("b").selectedIndex=this.options[this.selectedIndex].getAttribute("data-id");
-    document.getElementById('result').innerHTML = document.getElementById('b').value;
-  }
-  document.getElementById("a").onchange(); // trigger when loading
-}
+    window.onload = function () {
+        document.getElementById("a").onchange = function () {
+            document.getElementById("b").selectedIndex = this.options[this.selectedIndex].getAttribute("data-id");
+            document.getElementById('result').innerHTML = document.getElementById('b').value;
+        }
+        document.getElementById("a").onchange(); // trigger when loading
+    }
 </script>
 <%- include('partials/script.ejs') %>
-</body>
-</html>
+    </body>
+
+    </html>

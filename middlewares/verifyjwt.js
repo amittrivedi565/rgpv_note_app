@@ -6,8 +6,11 @@ try{
     let token = req.cookies['api-auth'];
     if(token)
     {
-        req.user = jwt.verify(token,authConfig.JWT_SECRET_KEY);
-        console.log(req.user);
+        req.user = jwt.verify(token,authConfig.JWT_SECRET_KEY,(err,result)=>{
+            req.admin_id = result.id
+            console.log(result)
+        });
+
     }
     else{
         res.clearCookie('api-auth');

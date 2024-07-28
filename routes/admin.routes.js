@@ -1,7 +1,8 @@
 const router = require("express").Router();
 const auth  = require("../controllers/admin/auth.controller.js");
-const course = require("../controllers/admin/course.controller.js")
+const uni = require("../controllers/admin/uni.controller.js")
 const branch = require("../controllers/admin/branch.controller.js")
+const course = require("../controllers/admin/course.controller.js")
 const year = require("../controllers/admin/year.controller.js")
 const admin = require("../controllers/admin/admin.controller.js")
 const sem = require("../controllers/admin/sem.controller.js")
@@ -10,15 +11,21 @@ const notes = require("../controllers/admin/note.controller.js");
 const {uploadPdf} = require("../middlewares/upload.js")
 const authVerify = require("../middlewares/verifyjwt.js")
 
+
 /* Admin Login Route */
 router.get("/login",auth.signInGet.controller)
 router.post("/login",auth.signInPost.validator,auth.signInPost.controller)
 router.post("/logout",auth.signInPost.validator,auth.signInPost.controller)
 router.get("/dashboard",authVerify,admin.adminGet.controller)
 
+/* University Routes */
+router.get("/uni",authVerify,uni.createUniGet.controller);
+router.post("/uni",authVerify,uploadPdf.single("pdf"),uni.createUniPost.validator,uni.createUniPost.controller);
+router.delete("/uni/:id",authVerify,uni.deleteUni.controller);
+
 /* Branch Routes */
-router.get("/branch",authVerify,branch.createBranchGet.controller);
-router.post("/branch",authVerify,branch.createBranchPost.validator,branch.createBranchPost.controller);
+router.get("/branch/:id",authVerify,branch.createBranchGet.controller);
+router.post("/branch/:id",authVerify,branch.createBranchPost.validator,branch.createBranchPost.controller);
 router.delete("/branch/:id",authVerify,branch.deleteBranch.controller);
 
 /* Course Routes */
@@ -47,12 +54,14 @@ router.post("/note/link/:sub_name/:id",authVerify,notes.notePost.controller);
 router.delete("/note/:id",authVerify,notes.deleteNote.controller);
 
 /* Description Routes */
+router.get("/uni/desc/:id",authVerify,uni.getDesc.controller)
 router.get("/branch/desc/:id",authVerify,branch.getDesc.controller)
 router.get("/course/desc/:id",authVerify,course.getDesc.controller)
 router.get("/subject/desc/:id",authVerify,subs.getDesc.controller)
 router.get("/notes/desc/:id",authVerify,notes.getDesc.controller)
 
 /* Tags Routes */
+router.get("/uni/tags/:id",authVerify,uni.getTag.controller)
 router.get("/branch/tags/:id",authVerify,branch.getTag.controller)
 router.get("/course/tags/:id",authVerify,course.getTag.controller)
 router.get("/subject/tags/:id",authVerify,subs.getTag.controller)

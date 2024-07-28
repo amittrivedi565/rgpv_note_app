@@ -1,13 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <%- include('includes/head.ejs') %>
-<body>
     <div class="main">
         <%- include('partials/sidebar') %>
     <div class="main-right">
         <%- include('partials/nav') %>
         <div class="main-right-top">
-           <b><a href="#">Branch Page</a></b>
+           <b><a href="#">Listed Universities</a></b>
            <div class="addModal">
               <!-- Button trigger modal -->
               <button type="button" class="btn btn-primary btn-sm " data-bs-toggle="modal" data-bs-target="#exampleModal">+</button>
@@ -16,26 +15,34 @@
                  <div class="modal-dialog">
                     <div class="modal-content">
                        <div class="modal-header">
-                          <h1 class="modal-title fs-5" id="exampleModalLabel">Create Branch</h1>
+                          <h1 class="modal-title fs-5" id="exampleModalLabel">Add University</h1>
                           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                        </div>
                        <div class="modal-body">
-                          <form method="post">
+                          <form method="post" enctype="multipart/form-data">
+                           
                              <div class="form-group">
-                                <label for="recipient-name" class="col-form-label">Branch
+                                <label for="recipient-name" class="col-form-label">University
                                 Name:</label>
                                 <input name="name" type="text" class="form-control" id="recipient-name">
                              </div>
                              <div class="form-group">
-                                <label for="message-text" class="col-form-label">Branch
+                                <label for="message-text" class="col-form-label">University
                                 Description:</label>
                                 <textarea name="desc" class="form-control" id="message-text"></textarea>
                              </div>
+
                              <div class="form-group">
-                                <label for="recipient-name" class="col-form-label">Branch
+                                <label for="recipient-name" class="col-form-label">University
                                 Tags:</label>
                                 <input name="tags" type="text" class="form-control" id="recipient-name">
                              </div>
+
+                             <div class="form-group">
+                              <label for="recipient-name" class="col-form-label">Upload College Photo 48px x 48px</label>
+                              <input name="pdf" type="file" class="form-control" id="recipient-name">
+                           </div>
+
                        </div>
                        <div class="modal-footer">
                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -48,9 +55,9 @@
            </div>
         </div>
         <div class="main-right-bottom">
-            <% if (branchData.length>0) { %>
+            <% if (uniData.length>0) { %>
             <% var index=0; %>
-            <% for( let branchArray of branchData ) { %>
+            <% for( let uniArray of uniData ) { %>
             <% index++ %>
             <div class="accordion mb-5 " id="accordionFlushExample">
                <div class="accordion-item">
@@ -58,7 +65,7 @@
                   <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                      data-bs-target="#flush-<%=index%>" aria-expanded="false"
                      aria-controls="flush-collapseOne">
-                  # <%= branchArray.name %>
+                  # <%= uniArray.name %>
                   </button>
                   <div id="flush-<%=index%>" class="accordion-collapse collapse"
                      aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
@@ -69,22 +76,22 @@
                                  <th scope="col">Name</th>
                                  <th scope="col">Description</th>
                                  <th scope="col">Tags</th>
-                                 <th scope="col">*Courses</th>
+                                 <th scope="col">*Branches</th>
                                  <th scope="col">*Actions</th>
                               </tr>
                            </thead>
                            <tbody>
                               <tr>
                                  <td>
-                                    <%= branchArray.name %>
+                                    <%= uniArray.name %>
                                  </td>
-                                 <td><a href="/close/branch/desc/<%= branchArray.id %>"><button type="button" class="btn btn-link">View</button></a></td>
-                                 <td><a href="/close/branch/tags/<%= branchArray.id %>"><button type="button" class="btn btn-link">View</button></a></td>
-                                 <td><a href="/close/course/<%= branchArray.id %>"><button
+                                 <td><a href="/close/uni/desc/<%= uniArray.id %>"><button type="button" class="btn btn-link">View</button></a></td>
+                                 <td><a href="/close/uni/tags/<%= uniArray.id %>"><button type="button" class="btn btn-link">View</button></a></td>
+                                 <td><a href="/close/branch/<%= uniArray.id %>"><button
                                     type="button" class="btn btn-outline-primary btn-sm">Next</button></a></td>
                                  <td>
                                     <form
-                                       action="/close/branch/<%= branchArray.id %>?_method=DELETE"
+                                       action="/close/uni/<%= uniArray.id %>?_method=DELETE"
                                        method="post">
                                        <button type="submit" class="btn btn-sm btn-outline-danger">Delete</button>
                                     </form>

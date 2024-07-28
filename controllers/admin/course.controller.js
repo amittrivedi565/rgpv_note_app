@@ -8,20 +8,14 @@ exports.CourseGet = {
   controller: async (req, res) => {
     try {
 
-        const branchData = await db.branches.findOne({
-          where : {
-            id : req.params.id
-          }
-        })
-
      const courseData = await db.courses.findAll({
       where : {
         branch_id : req.params.id
-      }
+      } , order : ['name']
       })
       
 
-      res.render("../views/admin/course.ejs", { courseData ,branchData});
+      res.render("../views/admin/course.ejs", { courseData});
     } catch (error) {
       console.log(error)
       res.status(201).send(error);

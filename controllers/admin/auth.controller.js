@@ -16,6 +16,7 @@ exports.signInGet = {
         }
     }
 }
+
 exports.signOut = {
     controller: async (req,res) => {
         try {
@@ -70,10 +71,10 @@ exports.signInPost = {
                 httpOnly : true,
                 secure : false
             })
-            res.redirect('/close/branch')
+            res.redirect('/close/dashboard')
         } catch (error) {
             console.log(error);
             res.status(500).json({ message: "Something went wrong" });
         }
     },
-};
+}; 

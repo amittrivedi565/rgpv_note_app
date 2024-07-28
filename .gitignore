@@ -4,5 +4,6 @@ node_modules
 # Ignore env file
 .env
 
-package.json
 
+public/test_image.png
+public/.DS_Store

@@ -1,0 +1,22 @@
+<div class="select-options">
+
+    <div class="select-heading">
+    See our top topics and institutions,
+    </div>
+
+    <div class="select-subheading">
+    hundreds of verified materials across various of institutions.
+    </div>
+
+    <div class="select-box">
+        <% uniData.forEach(element => { %>
+
+                <div class="select-fields">
+                    <div class="select-field-img"><img src="<%= element.url %>" alt="img"></div>
+                    <div class="select-field-head"><a href=""><%= element.name %></a></div>
+                </div>
+           
+        <% }) %>
+    </div>
+    
+</div>

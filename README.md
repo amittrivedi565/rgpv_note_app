@@ -1,4 +1,4 @@
-# notes_application
+# university content application
 
 
 ### Create .env
@@ -20,6 +20,12 @@ DB_DIALECT='mysql'
 # JWT Token
 JWT_SECRET_KEY='I LOVE JWTs'
 JWT_TOKEN_EXP_TIME='20m'
+
+# AWS S3 BUCKET CONFIG
+AWS_REGION = "region-name"
+AWS_ACCESS_KEY = "access_key"
+AWS_SECRET_KEY  = "secret_key"
+AWS_BUCKET_NAME = "your_bucket_name"
 
 ```
 

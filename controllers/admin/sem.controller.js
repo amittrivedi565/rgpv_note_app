@@ -9,7 +9,7 @@ exports.createSemGet = {
       const semData = await db.sems.findAll({
         where: {
           year_id: req.params.id,
-        },
+        }, order  : ['name']
       });
 
       res.render("../views/admin/sem.ejs", { semData });

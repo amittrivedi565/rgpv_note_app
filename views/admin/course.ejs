@@ -1,6 +1,7 @@
+<!DOCTYPE html>
+<html lang="en">
 <%- include('includes/head.ejs') %>
 <body>
-    
     <div class="main">
       <%- include('partials/sidebar') %>
 
@@ -64,7 +65,7 @@
                          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                             data-bs-target="#flush-<%=index%>" aria-expanded="false"
                             aria-controls="flush-collapseOne">
-                         <%= courseArray.name %> 
+                         # <%= courseArray.name %> 
                          </button>
                       </h2>
                       <div id="flush-<%=index%>" class="accordion-collapse collapse"
