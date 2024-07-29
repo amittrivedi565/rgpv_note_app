@@ -1,4 +1,4 @@
-# university content application
+# uniVault
 
 
 ### Create .env
